@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "885402938682",
+    "project_id": "halabcash-c04b8",
+    "storage_bucket": "halabcash-c04b8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885402938682:android:ffdbe6b79a564b03ee7403",
+        "android_client_info": {
+          "package_name": "com.example.halab_cash"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCLR60qDPNtnbh75Hr4d7NK5DyUnA-Zew"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
