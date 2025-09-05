@@ -21,7 +21,7 @@ class AuthTabsScreen extends StatelessWidget {
               indicatorColor: Colors.blue,
               tabs: [Tab(text: 'تسجيل الدخول'), Tab(text: 'إنشاء حساب')],
             ),
-             Expanded(
+            Expanded(
               child: TabBarView(children: [LoginForm(), RegisterForm()]),
             ),
           ],
@@ -56,8 +56,7 @@ class _LoginFormState extends State<LoginForm> {
         context,
         MaterialPageRoute(builder: (_) => MainWrapper()),
       );
-    } 
-    catch (e) {
+    } catch (e) {
       print("فشل تسجيل الدخول: $e");
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('فشل تسجيل الدخول: ${e.toString()}')),
@@ -68,26 +67,26 @@ class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      padding:  EdgeInsets.all(16),
+      padding: EdgeInsets.all(16),
       children: [
         Inputfiled(
           labelText: 'الاسم',
           hintText: "الاسم",
           controller: _usernameController,
         ),
-         SizedBox(height: 16),
+        SizedBox(height: 16),
         Inputfiled(
           labelText: 'كلمة المرور',
           hintText: "********",
           obscureText: true,
           controller: _passwordController,
         ),
-         SizedBox(height: 24),
+        SizedBox(height: 24),
         ElevatedButton(
           onPressed: _login,
           style: ElevatedButton.styleFrom(
-            backgroundColor:  Color(0xff0077FF),
-            padding:  EdgeInsets.symmetric(vertical: 16),
+            backgroundColor: Color(0xFF1E6C4C),
+            padding: EdgeInsets.symmetric(vertical: 16),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
@@ -97,11 +96,11 @@ class _LoginFormState extends State<LoginForm> {
             style: TextStyle(color: Colors.white, fontSize: 16),
           ),
         ),
-         SizedBox(height: 16),
+        SizedBox(height: 16),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: const [
-            Text(' تسجيل دخول', style: TextStyle(color: Color(0xff0077FF))),
+            Text(' تسجيل دخول', style: TextStyle(color: Color(0xFF1E6C4C))),
             SizedBox(width: 8),
             Text(' ليس لديك حساب ؟ '),
           ],
@@ -110,6 +109,7 @@ class _LoginFormState extends State<LoginForm> {
     );
   }
 }
+
 class RegisterForm extends StatefulWidget {
   const RegisterForm({super.key});
 
@@ -128,9 +128,9 @@ class _RegisterFormState extends State<RegisterForm> {
     final password = _passwordController.text.trim();
 
     if (email.isEmpty || password.isEmpty || name.isEmpty) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('الرجاء ملء جميع الحقول')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('الرجاء ملء جميع الحقول')));
       return;
     }
 
@@ -140,14 +140,12 @@ class _RegisterFormState extends State<RegisterForm> {
 
       print("تم إنشاء الحساب: ${userCredential.user?.email}");
 
-      // يمكنك هنا تحديث displayName للاسم
       await userCredential.user?.updateDisplayName(name);
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('تم إنشاء الحساب بنجاح')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('تم إنشاء الحساب بنجاح')));
 
-      // بعد التسجيل التوجيه للصفحة الرئيسية
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (_) => MainWrapper()),
@@ -165,22 +163,38 @@ class _RegisterFormState extends State<RegisterForm> {
     return ListView(
       padding: const EdgeInsets.all(16),
       children: [
-        Inputfiled(labelText: 'الاسم', hintText: "الاسم", controller: _nameController),
+        Inputfiled(
+          labelText: 'الاسم',
+          hintText: "الاسم",
+          controller: _nameController,
+        ),
         const SizedBox(height: 16),
-        Inputfiled(labelText: 'البريد الإلكتروني', hintText: "example@mail.com", controller: _emailController),
+        Inputfiled(
+          labelText: 'البريد الإلكتروني',
+          hintText: "example@mail.com",
+          controller: _emailController,
+        ),
         const SizedBox(height: 16),
-        Inputfiled(labelText: 'كلمة المرور', hintText: "********", controller: _passwordController, obscureText: true),
+        Inputfiled(
+          labelText: 'كلمة المرور',
+          hintText: "********",
+          controller: _passwordController,
+          obscureText: true,
+        ),
         const SizedBox(height: 24),
         ElevatedButton(
           onPressed: _register,
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xff0077FF),
+            backgroundColor: const Color(0xFF1E6C4C),
             padding: const EdgeInsets.symmetric(vertical: 16),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
           ),
-          child: const Text('إنشاء حساب', style: TextStyle(color: Colors.white, fontSize: 16)),
+          child: const Text(
+            'إنشاء حساب',
+            style: TextStyle(color: Colors.white, fontSize: 16),
+          ),
         ),
       ],
     );
